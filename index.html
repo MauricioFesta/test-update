@@ -26,6 +26,7 @@
   </style>
 </head>
 <body>
+<button onclick="searchUpdates()"></button>
   <h1>Electron Auto Update Example</h1>
   <p id="version"></p>
   <div id="notification" class="hidden">
@@ -38,6 +39,7 @@
     </button>
   </div>
   <script>
+    const { autoUpdater } = require('electron-updater');
     const { ipcRenderer } = require('electron');
     const version = document.getElementById('version');
     const notification = document.getElementById('notification');
@@ -70,5 +72,11 @@
     function restartApp() {
       ipcRenderer.send('restart_app');
     }
+
+    function searchUpdates(){
+
+      autoUpdater.checkForUpdatesAndNotify();
+    }
+    autoUpdater.checkForUpdatesAndNotify();
   </script>
 </body>
